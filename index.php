@@ -9,21 +9,29 @@
 			<h1>PHP with Slim and Twig</h1>
 		</header>
 		<main>
-			<p>Let's dev some PHP.</p>
-			<p>PHP pt1 BEGIN: /hello/yourname <br/>
+			<p>Learning the basics.</p>
+			<p>PHP BEGIN<br/>
 				<?php
-					require 'vendor/autoload.php';
-					$helloapp = new \Slim\Slim();
-					$helloapp->get('/hello/:name', function ($name)
+					require 'vendor/autoload.php'; // loads Slim and Twig
+					$mainapp = new \Slim\Slim();
+					$mainapp->get('/hello/:name', function ($name)
 					{
 						echo "Hello, $name";
 					});
-					$helloapp->run();
+					$mainapp->get('/', function() use($app)
+					{
+						$app->render('index.html');
+					});
+					$mainapp->get('/contact', function ()
+					{
+						echo 'Hello, this is the contact page';
+					});
+					$mainapp->run();
 				?>
-			<br/>PHP pt1 END</p>
+				<br/>PHP END</p>
 		</main>
 		<footer>
-			&copy;2015 George Tiser.
+			Project for <a href="https://teamtreehouse.com">Treehouse</a> / <a href="http://www.codelouisville.org">CodeLouisville</a>. George Tiser, June 2015.
 		</footer>
 	</body>
 </html>
